@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grahamskee Tattoos — Custom Tattoos &amp; Cover-Ups</title>
-<meta name="description" content="Grahamskee Tattoos — custom tattoo design and expert cover-up work. Original artwork built around your story, done clean and safe. Book your consultation today.">
+<title>Grahamskee Tattoos | Custom Tattoos &amp; Cover-Ups</title>
+<meta name="description" content="Grahamskee Tattoos. Custom tattoo design and expert cover-up work. Original artwork built around your story, done clean and safe. Book your consultation today.">
 <meta name="theme-color" content="#0a0a0b">
 <!--
   ============================================================================
-  GRAHAMSKEE TATTOOS — LANDING PAGE
+  GRAHAMSKEE TATTOOS - LANDING PAGE
   ----------------------------------------------------------------------------
   This page uses PLACEHOLDER content. Search for [[ ... ]] tokens and replace
   each with the real business info. Every placeholder is wrapped in double
@@ -30,7 +30,7 @@
   ============================================================================
 -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Grahamskee Tattoos — Custom Tattoos &amp; Cover-Ups">
+<meta property="og:title" content="Grahamskee Tattoos | Custom Tattoos &amp; Cover-Ups">
 <meta property="og:description" content="Custom tattoo design &amp; expert cover-up work. Original artwork built around your story. Book your consultation.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Cpath d='M16 5 18.6 12.4 26.5 12.6 20.2 17.4 22.5 24.9 16 20.4 9.5 24.9 11.8 17.4 5.5 12.6 13.4 12.4 Z' fill='%23e2483d'/%3E%3C/svg%3E">
@@ -150,17 +150,15 @@
   .sec-head p{color:var(--muted);margin-top:16px;font-size:1.05rem}
   /* Services */
   .grid{display:grid;gap:22px}
-  .services{grid-template-columns:repeat(3,1fr)}
-  .card{background:linear-gradient(180deg,var(--panel),#0f0f12);border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:36px 30px;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;position:relative;overflow:hidden}
-  .card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
-  .card:hover{transform:translateY(-6px);border-color:var(--line);box-shadow:var(--shadow)}
-  .card:hover::before{transform:scaleX(1)}
-  .card.feature{border-color:var(--line);background:linear-gradient(180deg,#1a1113,#0f0f12)}
-  .card.feature::before{transform:scaleX(1)}
-  .card .flag{position:absolute;top:16px;right:16px;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.6rem;color:var(--accent-2);border:1px solid var(--line);border-radius:40px;padding:3px 10px}
-  .card .ic{width:52px;height:52px;color:var(--accent-2);margin-bottom:22px}
-  .card h3{font-size:1.7rem;letter-spacing:.04em;margin-bottom:10px}
-  .card p{color:var(--muted);font-size:.96rem}
+  .services{grid-template-columns:repeat(2,1fr)}
+  .scard{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;border:1px solid var(--line);display:flex;align-items:flex-end;box-shadow:var(--shadow)}
+  .scard .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.05) brightness(.72);transition:filter .5s ease,transform .6s ease;z-index:0}
+  .scard:hover .bg{filter:grayscale(0) contrast(1.02) brightness(.9);transform:scale(1.06)}
+  .scard::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,11,.1) 35%,rgba(10,10,11,.86));pointer-events:none}
+  .scard::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;z-index:2;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+  .scard:hover::before{transform:scaleX(1)}
+  .scard h3{position:relative;z-index:2;margin:0;padding:24px 26px;font-size:2rem;letter-spacing:.04em;color:var(--ink);text-shadow:0 2px 12px rgba(0,0,0,.7)}
+  .scard.wide{grid-column:1 / -1;aspect-ratio:auto;min-height:190px}
   /* Stats band */
   .stats{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding-top:64px;padding-bottom:64px}
@@ -325,7 +323,7 @@
       <a href="#gallery">Gallery</a>
       <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
-      <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" class="nav-ig" aria-label="Instagram — @grahamskee.tattoos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" class="nav-ig" aria-label="Instagram @grahamskee.tattoos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a href="#book" class="btn btn-solid nav-cta">Book Now</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -346,8 +344,7 @@
       <span class="name">Graham<span class="k">skee</span></span>
       <span class="sub">Tattoos</span>
     </div>
-    <h1 class="hero-tag">Custom ink, done right. <span class="line2">Cover-ups that transform.</span></h1>
-    <p class="lede">Original tattoo work built around your story — plus expert cover-ups that turn regrets into art you're proud of. Clean, safe, and dialed to exactly what you want.</p>
+    <h1 class="hero-tag">Custom ink, done right.<br><span class="line2">Cover-ups that transform.</span></h1>
     <div class="hero-cta">
       <a href="[[BOOKING_URL]]" target="_blank" rel="noopener" class="btn btn-solid">Book a Consult →</a>
       <a href="tel:[[PHONE_TEL]]" class="btn btn-ghost">Call [[PHONE]]</a>
@@ -373,23 +370,20 @@
     <div class="sec-head reveal">
       <p class="eyebrow">What I Do</p>
       <h2>Services &amp; <span class="accent">Specialties</span></h2>
-      <p>From your first small piece to a full custom sleeve — and rescuing the tattoos you'd rather forget. Every session is done clean, safe, and built around your idea.</p>
+      <p>From your first small piece to a full custom sleeve, and rescuing the tattoos you'd rather forget. Every session is done clean, safe, and built around your idea.</p>
     </div>
     <div class="grid services">
-      <div class="card feature reveal">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 3l6 6L9 21H3v-6L15 3z"/><path d="M12 6l6 6"/></svg>
+      <div class="scard reveal">
+        <div class="bg" style="background-image:url('work1-poster.jpg')"></div>
         <h3>Custom Tattoos</h3>
-        <p>Original designs drawn just for you and built entirely around your idea. Bring a reference or just a concept and we'll bring it to life. Free design consults included.</p>
       </div>
-      <div class="card feature reveal">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17c4 0 4-10 8-10s4 10 8 10"/><path d="M3 12h.01M20.99 12H21"/></svg>
+      <div class="scard reveal">
+        <div class="bg" style="background-image:url('work2-poster.jpg')"></div>
         <h3>Fine Line</h3>
-        <p>Delicate script, minimalist symbols, and small, detailed pieces executed with a steady hand for crisp, clean lines that age well.</p>
       </div>
-      <div class="card feature reveal">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3s5 4 5 9a5 5 0 01-10 0c0-5 5-9 5-9z"/></svg>
+      <div class="scard wide reveal">
+        <div class="bg" style="background-image:url('work3-poster.jpg')"></div>
         <h3>Cover-Ups &amp; Rework</h3>
-        <p>Old, faded, or just not you anymore? Skilled cover-up and rework that reimagines existing ink into artwork you'll actually want to show off.</p>
       </div>
     </div>
   </div>
@@ -411,7 +405,7 @@
     <div class="sec-head center reveal">
       <p class="eyebrow">The Portfolio</p>
       <h2>Recent <span class="accent">Work</span></h2>
-      <p>A few pieces in motion — tap any reel to stop the scroll and hear the room. The full, always-growing portfolio lives on Instagram at <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" style="color:var(--accent-2);text-decoration:underline">@grahamskee.tattoos</a>.</p>
+      <p>A few pieces in motion. Tap any reel to stop the scroll and hear the room. The full, always-growing portfolio lives on Instagram at <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" style="color:var(--accent-2);text-decoration:underline">@grahamskee.tattoos</a>.</p>
     </div>
     <div class="reelmarquee reveal">
       <div class="reelrow" data-dir="rtl">
@@ -454,8 +448,8 @@
   <div class="wrap">
     <div class="sec-head center reveal">
       <p class="eyebrow">Try It Yourself</p>
-      <h2>Wanna Tattoo Yourself? <span class="accent">It's Hard.</span></h2>
-      <p>Drag your finger (or mouse) along the stencil to ink the line. Steady hand — real tattoos don't come with an undo button.</p>
+      <h2>Don't Tattoo <span class="accent">Yourself</span></h2>
+      <p>Leave it to the pros.</p>
     </div>
     <div class="ink-stage reveal">
       <div class="ink-wrap">
@@ -495,13 +489,13 @@
     <div class="grid reviews">
       <div class="quote reveal">
         <div class="stars">★★★★★</div>
-        <p>"[[REVIEW_1 — paste a real client review here. e.g. 'Graham took my messy old tattoo and turned it into something I actually love. Clean shop, easy to talk to, and the work speaks for itself.']]"</p>
-        <div class="who">— [[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
+        <p>"[[REVIEW_1: paste a real client review here. e.g. 'Graham took my messy old tattoo and turned it into something I actually love. Clean shop, easy to talk to, and the work speaks for itself.']]"</p>
+        <div class="who">[[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
       </div>
       <div class="quote reveal">
         <div class="stars">★★★★★</div>
-        <p>"[[REVIEW_2 — paste a second real client review here.]]"</p>
-        <div class="who">— [[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
+        <p>"[[REVIEW_2: paste a second real client review here.]]"</p>
+        <div class="who">[[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
       </div>
       <div class="quote reveal summary">
         <div class="g-rate"><b>4.9</b><span class="stars">★★★★★</span></div>
@@ -596,7 +590,7 @@
         <h5>Visit</h5>
         <p>[[ADDRESS_LINE]]</p>
         <a href="tel:[[PHONE_TEL]]">[[PHONE]]</a>
-        <p>[[HOURS_SUMMARY — e.g. Tue–Sat · 11am–7pm]]</p>
+        <p>[[HOURS_SUMMARY: e.g. Tue-Sat · 11am-7pm]]</p>
       </div>
     </div>
     <div class="foot-bottom">
