@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grahamskee Tattoos — Custom Tattoos &amp; Cover-Ups</title>
+<meta name="description" content="Grahamskee Tattoos — custom tattoo design and expert cover-up work. Original artwork built around your story, done clean and safe. Book your consultation today.">
+<meta name="theme-color" content="#0a0a0b">
+<!--
+  ============================================================================
+  GRAHAMSKEE TATTOOS — LANDING PAGE
+  ----------------------------------------------------------------------------
+  This page uses PLACEHOLDER content. Search for [[ ... ]] tokens and replace
+  each with the real business info. Every placeholder is wrapped in double
+  square brackets so they are easy to find. Placeholders in use:
+    [[PHONE]]         e.g. (555) 123-4567   (also update the tel: links)
+    [[PHONE_TEL]]     digits only, e.g. +15551234567
+    [[ADDRESS_LINE]]  e.g. 123 Main St, Your City, ST 00000
+    [[BOOKING_URL]]   Booksy / Square / booking link
+    https://www.instagram.com/grahamskee.tattoos e.g. https://instagram.com/grahamskeetattoos
+    @grahamskee.tattoos e.g. @grahamskeetattoos
+    [[FACEBOOK_URL]]  Facebook page link
+    [[MAPS_URL]]      Google Maps place link
+    [[GOOGLE_RATING]] e.g. 5.0
+    [[REVIEW_COUNT]]  e.g. 120
+    [[YEARS]]         years of experience, e.g. 10
+    [[HOURS_*]]       daily hours
+  Gallery images are random placeholders (picsum) — swap the src values for
+  real photos of your work.
+  ============================================================================
+-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Grahamskee Tattoos — Custom Tattoos &amp; Cover-Ups">
+<meta property="og:description" content="Custom tattoo design &amp; expert cover-up work. Original artwork built around your story. Book your consultation.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0b'/%3E%3Cpath d='M16 5 18.6 12.4 26.5 12.6 20.2 17.4 22.5 24.9 16 20.4 9.5 24.9 11.8 17.4 5.5 12.6 13.4 12.4 Z' fill='%23e2483d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --bg-2:#111114;
+    --panel:#16161a;
+    --accent:#e2483d;        /* crimson */
+    --accent-2:#ff6a5c;      /* lighter crimson */
+    --accent-deep:#7d1f18;
+    --ink:#ece9e4;
+    --muted:#98938b;
+    --line:rgba(226,72,61,.20);
+    --shadow:0 30px 80px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em;line-height:1;font-weight:400}
+  .eyebrow{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.42em;font-size:.72rem;color:var(--accent-2);font-weight:600}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .accent{color:var(--accent-2)}
+  section{position:relative}
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;
+    font-size:.86rem;padding:16px 30px;border-radius:2px;cursor:pointer;border:1px solid transparent;
+    transition:transform .18s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+  }
+  .btn-solid{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#180605;box-shadow:0 10px 30px rgba(226,72,61,.30)}
+  .btn-solid:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(226,72,61,.46)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-2);transform:translateY(-2px)}
+  /* Nav */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s ease,border-color .3s ease,padding .3s ease;
+    border-bottom:1px solid transparent;padding:18px 0}
+  header.nav.scrolled{background:rgba(10,10,11,.86);backdrop-filter:blur(12px);border-bottom-color:var(--line);padding:12px 0}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px}
+  /* Brand wordmark */
+  .logo{display:inline-flex;flex-direction:column;line-height:.82;user-select:none}
+  .logo .name{
+    font-family:'Anton',sans-serif;font-weight:400;font-size:1.7em;
+    color:var(--ink);transform:skewX(-6deg);letter-spacing:.01em;text-transform:uppercase;
+    text-shadow:2px 3px 0 rgba(0,0,0,.55);
+  }
+  .logo .name .k{color:var(--accent-2)}
+  .logo .sub{
+    font-family:'Oswald',sans-serif;font-weight:500;
+    font-size:.52em;letter-spacing:.34em;color:var(--muted);text-transform:uppercase;margin-top:.35em;padding-left:.15em;white-space:nowrap;
+  }
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a{font-family:'Oswald';text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--accent-2)}
+  .nav-cta{padding:11px 22px;font-size:.78rem}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;padding:6px}
+  .burger span{width:26px;height:2px;background:var(--ink);display:block}
+  /* Hero */
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:130px 0 90px;overflow:hidden}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:saturate(1.05) brightness(.85)}
+  .hero-bg{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(1100px 700px at 80% 10%, rgba(226,72,61,.20), transparent 58%),
+      linear-gradient(102deg,rgba(9,9,11,.88) 0%,rgba(9,9,11,.64) 40%,rgba(9,9,11,.30) 72%,rgba(9,9,11,.12) 100%);
+  }
+  .hero-bg::after{content:"";position:absolute;inset:0;opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Ccircle cx='30' cy='30' r='.7' fill='%23e2483d' fill-opacity='.22'/%3E%3C/svg%3E");}
+  .hero-content{position:relative;z-index:2;max-width:780px}
+  .rating-pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:50px;padding:7px 16px 7px 12px;margin-bottom:26px;background:rgba(255,255,255,.02)}
+  .stars{color:var(--accent-2);letter-spacing:2px;font-size:.9rem}
+  .rating-pill small{color:var(--muted);font-family:'Oswald';font-size:.78rem;letter-spacing:.06em}
+  .hero-logo{margin:14px 0 22px}
+  .hero-logo .name{font-size:clamp(46px,10vw,104px)}
+  .hero-logo .sub{font-size:clamp(11px,1.5vw,15px);letter-spacing:.42em;margin-top:.5em}
+  .hero h1.hero-tag{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.9rem,4.6vw,3.3rem);margin:0 0 18px;letter-spacing:.02em;color:#efeae0;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+  .hero h1.hero-tag .line2{color:var(--accent-2)}
+  .hero p.lede{font-size:1.18rem;color:#d3cfc7;max-width:580px;margin-bottom:36px;font-weight:400;text-shadow:0 1px 10px rgba(0,0,0,.65)}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+  /* Instagram accents */
+  .nav-ig{display:inline-grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;color:var(--muted);transition:.2s}
+  .nav-ig:hover{color:#180605;background:var(--accent);border-color:var(--accent)}
+  .nav-ig svg{width:18px;height:18px}
+  .ig-follow{display:inline-flex;align-items:center;gap:9px;margin-top:22px;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.82rem;color:var(--muted);transition:color .2s}
+  .ig-follow svg{width:19px;height:19px;color:var(--accent-2)}
+  .ig-follow b{color:var(--ink);font-weight:500}
+  .ig-follow:hover{color:var(--accent-2)}
+  .ig-follow:hover b{color:var(--accent-2)}
+  .ig-cta{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:36px}
+  .ig-cta .btn svg{width:19px;height:19px}
+  .ig-cta small{font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--muted)}
+  .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;color:var(--muted);font-family:'Oswald';font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;text-align:center}
+  .scroll-hint .arw{display:block;margin:8px auto 0;width:1px;height:34px;background:linear-gradient(var(--accent),transparent)}
+  /* Marquee */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2);overflow:hidden;padding:16px 0}
+  .marquee-track{display:flex;gap:56px;white-space:nowrap;animation:scroll 26s linear infinite;font-family:'Bebas Neue';font-size:1.5rem;letter-spacing:.08em;color:#2c2c30}
+  .marquee-track span{display:inline-flex;align-items:center;gap:56px}
+  .marquee-track b{color:var(--accent);font-weight:400}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  /* Section shell */
+  .sec{padding:110px 0}
+  .sec-head{max-width:660px;margin-bottom:56px}
+  .sec-head.center{margin:0 auto 60px;text-align:center}
+  .sec-head h2{font-size:clamp(2.6rem,5vw,4rem);margin:14px 0 0}
+  .sec-head p{color:var(--muted);margin-top:16px;font-size:1.05rem}
+  /* Services */
+  .grid{display:grid;gap:22px}
+  .services{grid-template-columns:repeat(3,1fr)}
+  .card{background:linear-gradient(180deg,var(--panel),#0f0f12);border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:36px 30px;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+  .card:hover{transform:translateY(-6px);border-color:var(--line);box-shadow:var(--shadow)}
+  .card:hover::before{transform:scaleX(1)}
+  .card.feature{border-color:var(--line);background:linear-gradient(180deg,#1a1113,#0f0f12)}
+  .card.feature::before{transform:scaleX(1)}
+  .card .flag{position:absolute;top:16px;right:16px;font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.6rem;color:var(--accent-2);border:1px solid var(--line);border-radius:40px;padding:3px 10px}
+  .card .ic{width:52px;height:52px;color:var(--accent-2);margin-bottom:22px}
+  .card h3{font-size:1.7rem;letter-spacing:.04em;margin-bottom:10px}
+  .card p{color:var(--muted);font-size:.96rem}
+  /* Stats band */
+  .stats{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding-top:64px;padding-bottom:64px}
+  .stat{text-align:center}
+  .stat b{display:block;font-family:'Bebas Neue';font-size:3.4rem;color:var(--accent-2);line-height:1}
+  .stat span{font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;color:var(--muted)}
+  /* Gallery */
+  .gallery{grid-template-columns:repeat(4,1fr);gap:16px}
+  .tile{aspect-ratio:1;border-radius:6px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);display:block;background:#111114}
+  .tile img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.06) brightness(.82);transition:transform .6s ease,filter .6s ease}
+  .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,.1) 40%,rgba(10,10,11,.82));pointer-events:none;transition:opacity .4s ease}
+  .tile:hover img{transform:scale(1.07);filter:grayscale(0) contrast(1.02) brightness(.95)}
+  .tile:hover::after{opacity:.55}
+  .tile .tag{position:absolute;bottom:12px;left:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;color:var(--ink);background:rgba(0,0,0,.55);padding:4px 10px;border-radius:2px;backdrop-filter:blur(2px)}
+  /* Reviews */
+  .reviews{grid-template-columns:repeat(3,1fr)}
+  .quote{background:linear-gradient(180deg,var(--panel),#0f0f12);border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:34px 30px}
+  .quote .stars{margin-bottom:16px}
+  .quote p{font-size:1.05rem;color:#d8d4cb;font-style:italic;margin-bottom:20px}
+  .quote .who{font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.76rem;color:var(--accent-2)}
+  .quote.summary{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;background:linear-gradient(180deg,#191114,#0e0e12);border-color:var(--line)}
+  .quote.summary .g-rate{display:flex;align-items:center;gap:12px}
+  .quote.summary .g-rate b{font-family:'Bebas Neue';font-size:3.4rem;line-height:1;color:var(--accent-2)}
+  .quote.summary .g-rate .stars{font-size:1.05rem;letter-spacing:1px}
+  .quote.summary .g-count{font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.82rem;color:var(--muted);margin:0}
+  /* Visit / contact */
+  .visit{background:var(--bg-2);border-top:1px solid var(--line)}
+  .visit .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+  .info-row{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .info-row:last-of-type{border-bottom:0}
+  .info-row .ic{width:24px;height:24px;color:var(--accent-2);flex:none;margin-top:3px}
+  .info-row h4{font-family:'Oswald';text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;color:var(--muted);font-weight:600;margin-bottom:4px}
+  .info-row .val{font-size:1.06rem;color:var(--ink)}
+  .info-row .val a:hover{color:var(--accent-2)}
+  .hours-tbl{width:100%;border-collapse:collapse;margin-top:6px}
+  .hours-tbl td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.98rem}
+  .hours-tbl td:last-child{text-align:right;color:var(--muted);font-family:'Oswald';letter-spacing:.04em}
+  .hours-tbl tr.open td:last-child{color:var(--accent-2)}
+  .hours-tbl tr.closed td:last-child{color:var(--muted)}
+  .visit-card{background:linear-gradient(180deg,var(--panel),#0e0e11);border:1px solid var(--line);border-radius:8px;padding:40px 36px;box-shadow:var(--shadow)}
+  .visit-card h3{font-size:2.2rem;margin-bottom:8px}
+  .visit-card p{color:var(--muted);margin-bottom:26px}
+  .visit-card .btn{width:100%;justify-content:center;margin-bottom:14px}
+  /* CTA banner */
+  .cta{padding:120px 0;text-align:center;position:relative;overflow:hidden;background:#0a0a0b}
+  .cta-bg{position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(900px 500px at 50% 0%, rgba(226,72,61,.22), transparent 62%),
+      radial-gradient(700px 500px at 50% 100%, rgba(125,31,24,.24), transparent 60%),
+      #0a0a0b;}
+  .cta .wrap{position:relative;z-index:2}
+  .cta h2{font-size:clamp(2.8rem,7vw,5.5rem);margin:16px 0 22px;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+  .cta p{color:#cfcbc3;max-width:540px;margin:0 auto 36px;font-size:1.1rem;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .cta .hero-cta{justify-content:center}
+  /* Footer */
+  footer{background:#08080a;border-top:1px solid var(--line);padding:56px 0 30px}
+  .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .foot-col h5{font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;color:var(--accent-2);margin-bottom:14px}
+  .foot-col a,.foot-col p{display:block;color:var(--muted);font-size:.92rem;margin-bottom:8px}
+  .foot-col a:hover{color:var(--accent-2)}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:24px;color:#5c5a54;font-size:.82rem;font-family:'Oswald';letter-spacing:.06em}
+  .socials{display:flex;gap:12px}
+  .socials a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);transition:.2s}
+  .socials a:hover{color:#180605;background:var(--accent);border-color:var(--accent)}
+  .socials svg{width:17px;height:17px}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:900px){
+    .services,.reviews{grid-template-columns:1fr 1fr}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .stats .wrap{grid-template-columns:1fr 1fr;gap:40px 20px}
+    .visit .wrap{grid-template-columns:1fr;gap:40px}
+    .nav-links{display:none}
+    .burger{display:flex}
+    .sec{padding:80px 0}
+    .cta{padding:88px 0}
+  }
+  @media(max-width:640px){
+    .wrap{padding:0 20px}
+    .hero{min-height:100vh;min-height:100dvh;padding:104px 0 84px}
+    .hero-content{text-align:center;margin:auto;width:100%}
+    .hero-bg{background:
+      radial-gradient(700px 500px at 50% 8%, rgba(226,72,61,.18), transparent 60%),
+      linear-gradient(180deg,rgba(9,9,11,.78) 0%,rgba(9,9,11,.50) 42%,rgba(9,9,11,.72) 100%)}
+    .rating-pill{display:none}
+    .hero p.lede{font-size:1.06rem;margin-left:auto;margin-right:auto}
+    .hero-cta{flex-direction:column;align-items:center;gap:12px}
+    .hero-cta .btn,.visit-card .btn{width:100%;max-width:360px;justify-content:center}
+    .cta .hero-cta{align-items:center}
+    .cta .hero-cta .btn{width:100%;max-width:340px}
+    .services,.reviews{grid-template-columns:1fr}
+    .foot-top{flex-direction:column;gap:28px}
+    .sec-head{margin-bottom:40px}
+    .scroll-hint{display:none}
+    .marquee-track{font-size:1.25rem;gap:40px}
+    .marquee-track span{gap:40px}
+    .stat b{font-size:2.7rem}
+  }
+  @media(max-width:400px){
+    .gallery{grid-template-columns:1fr 1fr;gap:12px}
+    .stats .wrap{grid-template-columns:1fr 1fr;gap:32px 16px}
+    .visit-card{padding:32px 24px}
+  }
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand" aria-label="Grahamskee Tattoos">
+      <span class="logo" style="font-size:15px">
+        <span class="name">Graham<span class="k">skee</span></span>
+        <span class="sub">Tattoos</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
+      <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" class="nav-ig" aria-label="Instagram — @grahamskee.tattoos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#book" class="btn btn-solid nav-cta">Book Now</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="poster.jpg">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg"></div>
+  <div class="wrap hero-content">
+    <div class="rating-pill">
+      <span class="stars">★★★★★</span>
+      <small>[[GOOGLE_RATING]] on Google · [[REVIEW_COUNT]]+ reviews</small>
+    </div>
+    <div class="logo hero-logo">
+      <span class="name">Graham<span class="k">skee</span></span>
+      <span class="sub">Tattoos</span>
+    </div>
+    <h1 class="hero-tag">Custom ink, done right. <span class="line2">Cover-ups that transform.</span></h1>
+    <p class="lede">Original tattoo work built around your story — plus expert cover-ups that turn regrets into art you're proud of. Clean, safe, and dialed to exactly what you want.</p>
+    <div class="hero-cta">
+      <a href="[[BOOKING_URL]]" target="_blank" rel="noopener" class="btn btn-solid">Book a Consult →</a>
+      <a href="tel:[[PHONE_TEL]]" class="btn btn-ghost">Call [[PHONE]]</a>
+    </div>
+    <a class="ig-follow" href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Follow <b>@grahamskee.tattoos</b>
+    </a>
+  </div>
+  <div class="scroll-hint">Scroll<span class="arw"></span></div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>CUSTOM TATTOOS <b>✦</b> FINE LINE <b>✦</b> COVER-UPS &amp; REWORK <b>✦</b> CUSTOM TATTOOS <b>✦</b> FINE LINE <b>✦</b> COVER-UPS &amp; REWORK <b>✦</b></span>
+    <span>CUSTOM TATTOOS <b>✦</b> FINE LINE <b>✦</b> COVER-UPS &amp; REWORK <b>✦</b> CUSTOM TATTOOS <b>✦</b> FINE LINE <b>✦</b> COVER-UPS &amp; REWORK <b>✦</b></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">What I Do</p>
+      <h2>Services &amp; <span class="accent">Specialties</span></h2>
+      <p>From your first small piece to a full custom sleeve — and rescuing the tattoos you'd rather forget. Every session is done clean, safe, and built around your idea.</p>
+    </div>
+    <div class="grid services">
+      <div class="card feature reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 3l6 6L9 21H3v-6L15 3z"/><path d="M12 6l6 6"/></svg>
+        <h3>Custom Tattoos</h3>
+        <p>Original designs drawn just for you and built entirely around your idea. Bring a reference or just a concept and we'll bring it to life. Free design consults included.</p>
+      </div>
+      <div class="card feature reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17c4 0 4-10 8-10s4 10 8 10"/><path d="M3 12h.01M20.99 12H21"/></svg>
+        <h3>Fine Line</h3>
+        <p>Delicate script, minimalist symbols, and small, detailed pieces executed with a steady hand for crisp, clean lines that age well.</p>
+      </div>
+      <div class="card feature reveal">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3s5 4 5 9a5 5 0 01-10 0c0-5 5-9 5-9z"/></svg>
+        <h3>Cover-Ups &amp; Rework</h3>
+        <p>Old, faded, or just not you anymore? Skilled cover-up and rework that reimagines existing ink into artwork you'll actually want to show off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><b class="count" data-target="[[GOOGLE_RATING]]" data-dec="1" data-suffix="★">0</b><span>Google Rating</span></div>
+    <div class="stat reveal"><b class="count" data-target="[[REVIEW_COUNT]]" data-suffix="+">0</b><span>Client Reviews</span></div>
+    <div class="stat reveal"><b class="count" data-target="100" data-suffix="%">0</b><span>Sterile &amp; Licensed</span></div>
+    <div class="stat reveal"><b class="count" data-target="[[YEARS]]" data-suffix="+">0</b><span>Years Experience</span></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">The Portfolio</p>
+      <h2>Recent <span class="accent">Work</span></h2>
+      <p>Just a glimpse — the full, always-growing portfolio lives on Instagram, updated with fresh work all the time. Follow along at <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" style="color:var(--accent-2);text-decoration:underline">@grahamskee.tattoos</a>.</p>
+    </div>
+    <div class="grid gallery">
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-2/600/600?grayscale" alt="Tattoo work sample — custom" loading="lazy"><span class="tag">Custom</span></div>
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-17/600/600?grayscale" alt="Tattoo work sample — custom" loading="lazy"><span class="tag">Custom</span></div>
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-24/600/600?grayscale" alt="Tattoo work sample — cover-up" loading="lazy"><span class="tag">Cover-Up</span></div>
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-33/600/600?grayscale" alt="Tattoo work sample — fine line" loading="lazy"><span class="tag">Fine Line</span></div>
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-41/600/600?grayscale" alt="Tattoo work sample — fine line" loading="lazy"><span class="tag">Fine Line</span></div>
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-58/600/600?grayscale" alt="Tattoo work sample — fine line" loading="lazy"><span class="tag">Fine Line</span></div>
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-63/600/600?grayscale" alt="Tattoo work sample — custom" loading="lazy"><span class="tag">Custom</span></div>
+      <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-77/600/600?grayscale" alt="Tattoo work sample — cover-up" loading="lazy"><span class="tag">Cover-Up</span></div>
+    </div>
+    <div class="ig-cta reveal">
+      <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" class="btn btn-solid">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Follow on Instagram
+      </a>
+      <small>@grahamskee.tattoos · new work posted regularly</small>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec" id="reviews" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">Word on the Street</p>
+      <h2>What Clients <span class="accent">Say</span></h2>
+      <p>Rated [[GOOGLE_RATING]]★ across [[REVIEW_COUNT]] reviews from clients who trusted us with their ink.</p>
+    </div>
+    <div class="grid reviews">
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"[[REVIEW_1 — paste a real client review here. e.g. 'Graham took my messy old tattoo and turned it into something I actually love. Clean shop, easy to talk to, and the work speaks for itself.']]"</p>
+        <div class="who">— [[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"[[REVIEW_2 — paste a second real client review here.]]"</p>
+        <div class="who">— [[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
+      </div>
+      <div class="quote reveal summary">
+        <div class="g-rate"><b>[[GOOGLE_RATING]]</b><span class="stars">★★★★★</span></div>
+        <p class="g-count">[[REVIEW_COUNT]] client reviews</p>
+        <a href="[[MAPS_URL]]" target="_blank" rel="noopener" class="btn btn-ghost" style="width:100%;justify-content:center">Read all on Google</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT / BOOK -->
+<section class="sec visit" id="visit">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Find Us</p>
+      <h2 class="sec-head" style="margin-bottom:26px">Visit the <span class="accent">Studio</span></h2>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <div><h4>Location</h4><div class="val">[[ADDRESS_LINE]]</div></div>
+      </div>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.4-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg>
+        <div><h4>Call / Text</h4><div class="val"><a href="tel:[[PHONE_TEL]]">[[PHONE]]</a></div></div>
+      </div>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div style="width:100%"><h4>Hours</h4>
+          <table class="hours-tbl">
+            <tr class="closed"><td>Monday</td><td>[[HOURS_MON]]</td></tr>
+            <tr class="open"><td>Tuesday</td><td>[[HOURS_TUE]]</td></tr>
+            <tr class="open"><td>Wednesday</td><td>[[HOURS_WED]]</td></tr>
+            <tr class="open"><td>Thursday</td><td>[[HOURS_THU]]</td></tr>
+            <tr class="open"><td>Friday</td><td>[[HOURS_FRI]]</td></tr>
+            <tr class="open"><td>Saturday</td><td>[[HOURS_SAT]]</td></tr>
+            <tr class="closed"><td>Sunday</td><td>[[HOURS_SUN]]</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="visit-card reveal" id="book">
+      <h3>Ready to Get <span class="accent">Inked?</span></h3>
+      <p>Book a free consultation and we'll plan your piece — placement, sizing, and design. Prefer to talk it through? Give the studio a call.</p>
+      <a href="[[BOOKING_URL]]" target="_blank" rel="noopener" class="btn btn-solid">Book Online</a>
+      <a href="tel:[[PHONE_TEL]]" class="btn btn-ghost">Call [[PHONE]]</a>
+      <a href="[[MAPS_URL]]" target="_blank" rel="noopener" class="btn btn-ghost">Get Directions</a>
+      <p style="margin:22px 0 0;font-size:.84rem;color:#66635c">Must be 18+ with a valid ID for tattoos. Deposits may be required to hold appointment times.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-bg"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Your Story · Your Skin</p>
+    <h2 class="reveal">LET'S MAKE<br>SOMETHING <span class="accent">PERMANENT</span></h2>
+    <p class="reveal">Bring your idea, a reference, or just a feeling. We'll turn it into art you'll carry for life.</p>
+    <div class="hero-cta reveal">
+      <a href="[[BOOKING_URL]]" target="_blank" rel="noopener" class="btn btn-solid">Book a Consult →</a>
+      <a href="tel:[[PHONE_TEL]]" class="btn btn-ghost">Call the Studio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="reveal" style="max-width:320px">
+        <div style="margin-bottom:18px">
+          <span class="logo" style="font-size:17px">
+            <span class="name">Graham<span class="k">skee</span></span>
+            <span class="sub">Tattoos</span>
+          </span>
+        </div>
+        <p style="color:var(--muted);font-size:.92rem">Custom tattoos &amp; expert cover-up work. Clean, professional, and proud of every piece.</p>
+        <div class="socials" style="margin-top:18px">
+          <a href="[[FACEBOOK_URL]]" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></a>
+          <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="tel:[[PHONE_TEL]]" aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.4-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col reveal">
+        <h5>Explore</h5>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Visit &amp; Hours</a>
+      </div>
+      <div class="foot-col reveal">
+        <h5>Services</h5>
+        <a href="#services">Custom Tattoos</a>
+        <a href="#services">Fine Line</a>
+        <a href="#services">Cover-Ups &amp; Rework</a>
+      </div>
+      <div class="foot-col reveal">
+        <h5>Visit</h5>
+        <p>[[ADDRESS_LINE]]</p>
+        <a href="tel:[[PHONE_TEL]]">[[PHONE]]</a>
+        <p>[[HOURS_SUMMARY — e.g. Tue–Sat · 11am–7pm]]</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Grahamskee Tattoos</span>
+      <span>Must be 18+ for tattoos · Valid ID required</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const sibs=[...el.parentElement.children].filter(c=>c.classList.contains('reveal'));
+      const idx=sibs.indexOf(el);
+      el.style.transitionDelay=(idx>0?Math.min(idx,8)*80:0)+'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    }
+  }),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  document.getElementById('burger').addEventListener('click',()=>{
+    const l=document.querySelector('.nav-links');
+    const open=l.style.display==='flex';
+    l.style.cssText=open?'':'display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#0d0d10;padding:20px 28px;gap:18px;border-bottom:1px solid var(--line)';
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+    if(innerWidth<=900){document.querySelector('.nav-links').style.cssText=''}
+  }));
+  // Count-up animation for stats (skips gracefully if a placeholder isn't numeric)
+  function animateCount(el){
+    const target=parseFloat(el.dataset.target);
+    const suffix=el.dataset.suffix||'';
+    const prefix=el.dataset.prefix||'';
+    if(isNaN(target)){el.textContent=el.dataset.target;return;}
+    const dec=parseInt(el.dataset.dec||'0',10);
+    const dur=1700; let start=null;
+    function step(ts){
+      if(start===null) start=ts;
+      const p=Math.min((ts-start)/dur,1);
+      const eased=1-Math.pow(1-p,3);
+      el.textContent=prefix+(target*eased).toFixed(dec)+suffix;
+      if(p<1){requestAnimationFrame(step);} else {el.textContent=prefix+target.toFixed(dec)+suffix;}
+    }
+    requestAnimationFrame(step);
+  }
+  const countObs=new IntersectionObserver((es)=>es.forEach(e=>{
+    if(e.isIntersecting){animateCount(e.target);countObs.unobserve(e.target);}
+  }),{threshold:.5});
+  document.querySelectorAll('.count').forEach(el=>countObs.observe(el));
+  // Fallback placeholder if a gallery stock image fails to load
+  const PH="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><rect width='600' height='600' fill='#141417'/><g stroke='#e2483d' stroke-width='9' fill='none' opacity='.5' stroke-linejoin='round' stroke-linecap='round'><rect x='168' y='196' width='264' height='188' rx='14'/><circle cx='246' cy='256' r='22'/><path d='M180 362 L276 286 L338 336 L398 290 L420 374'/></g><text x='300' y='448' text-anchor='middle' fill='#8a8781' font-family='Arial,sans-serif' font-size='27' letter-spacing='5'>SAMPLE PHOTO</text></svg>");
+  document.querySelectorAll('.tile img').forEach(img=>{
+    img.addEventListener('error',()=>{ if(!img.dataset.ph){ img.dataset.ph='1'; img.src=PH; } });
+  });
+</script>
+</body>
+</html>
