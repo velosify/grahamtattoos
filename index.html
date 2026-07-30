@@ -729,31 +729,30 @@
     mirD.forEach(d=>{samples.push(...sample(d,false));samples.push(...sample(d,true));});
     const total=samples.length;
     const ctx=canvas.getContext('2d');
-    const ink=document.createElement('canvas'), ictx=ink.getContext('2d');
     let inked,count,dpr,t,drawing=false,lx=0,ly=0,done;
+    const INK='#141414',INKW=7,PR=14; // ink color, brush width, progress tolerance
     function paintHelmet(c,color,w){c.lineWidth=w;c.strokeStyle=color;c.lineCap='round';c.lineJoin='round';fullP.forEach(p=>c.stroke(p));mirP.forEach(o=>{c.stroke(o[0]);c.stroke(o[1]);});}
     function drawStencil(){ctx.clearRect(0,0,W,H);paintHelmet(ctx,'#3f57c9',3);}
     function setup(){
       const cw=Math.max(240,Math.min(wrap.clientWidth||W,560));
       dpr=Math.min(window.devicePixelRatio||1,2);const scale=cw/W;t=dpr*scale;
       canvas.width=Math.round(cw*dpr);canvas.height=Math.round(cw*(H/W)*dpr);
-      ink.width=canvas.width;ink.height=canvas.height;
-      ctx.setTransform(t,0,0,t,0,0);ictx.setTransform(t,0,0,t,0,0);
-      ictx.clearRect(0,0,W,H);paintHelmet(ictx,'#141414',7.5);
+      ctx.setTransform(t,0,0,t,0,0);
       drawStencil();inked=new Uint8Array(total);count=0;done=false;
       stage.classList.remove('done');wrap.classList.remove('started');updateMeter();
     }
     function updateMeter(){const pct=Math.min(100,Math.round(count/total*100));fillEl.style.width=pct+'%';pctEl.textContent=pct+'%';
       if(pct>=90&&!done){done=true;stage.classList.add('done');}}
-    function reveal(x,y){ctx.save();ctx.beginPath();ctx.arc(x,y,BR,0,Math.PI*2);ctx.clip();ctx.drawImage(ink,0,0,W,H);ctx.restore();
-      for(let i=0;i<total;i++){if(inked[i])continue;const dx=samples[i].x-x,dy=samples[i].y-y;if(dx*dx+dy*dy<=BR*BR){inked[i]=1;count++;}}}
+    function mark(x,y){for(let i=0;i<total;i++){if(inked[i])continue;const dx=samples[i].x-x,dy=samples[i].y-y;if(dx*dx+dy*dy<=PR*PR){inked[i]=1;count++;}}}
+    function dab(x,y){ctx.fillStyle=INK;ctx.beginPath();ctx.arc(x,y,INKW/2,0,Math.PI*2);ctx.fill();mark(x,y);}
+    function seg(x0,y0,x1,y1){ctx.strokeStyle=INK;ctx.lineWidth=INKW;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();
+      const dist=Math.hypot(x1-x0,y1-y0),steps=Math.max(1,Math.ceil(dist/(PR*0.7)));for(let k=0;k<=steps;k++){mark(x0+(x1-x0)*k/steps,y0+(y1-y0)*k/steps);}}
     function toLocal(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*(W/r.width),y:(e.clientY-r.top)*(W/r.width)};}
     function moveGun(e){const r=wrap.getBoundingClientRect();gun.style.left=(e.clientX-r.left)+'px';gun.style.top=(e.clientY-r.top)+'px';}
     wrap.addEventListener('pointerdown',e=>{e.preventDefault();drawing=true;wrap.setPointerCapture&&wrap.setPointerCapture(e.pointerId);
-      wrap.classList.add('started');gun.classList.add('on','buzz');moveGun(e);const p=toLocal(e);lx=p.x;ly=p.y;reveal(lx,ly);updateMeter();});
+      wrap.classList.add('started');gun.classList.add('on','buzz');moveGun(e);const p=toLocal(e);lx=p.x;ly=p.y;dab(lx,ly);updateMeter();});
     wrap.addEventListener('pointermove',e=>{moveGun(e);gun.classList.add('on');if(!drawing)return;e.preventDefault();
-      const p=toLocal(e),dx=p.x-lx,dy=p.y-ly,dist=Math.hypot(dx,dy),steps=Math.max(1,Math.ceil(dist/(BR*0.5)));
-      for(let k=1;k<=steps;k++){reveal(lx+dx*k/steps,ly+dy*k/steps);}lx=p.x;ly=p.y;updateMeter();});
+      const p=toLocal(e);seg(lx,ly,p.x,p.y);lx=p.x;ly=p.y;updateMeter();});
     function stop(){drawing=false;gun.classList.remove('buzz');}
     wrap.addEventListener('pointerup',stop);
     wrap.addEventListener('pointercancel',stop);
