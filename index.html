@@ -176,7 +176,7 @@
   .tile:hover::after{opacity:.55}
   .tile .tag{position:absolute;bottom:12px;left:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;color:var(--ink);background:rgba(0,0,0,.55);padding:4px 10px;border-radius:2px;backdrop-filter:blur(2px)}
   /* Video work row */
-  .vids{grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+  .vids{grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px}
   .vtile{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:#111114;margin:0}
   .vtile video{width:100%;height:100%;object-fit:cover;display:block}
   .vtile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,0) 55%,rgba(10,10,11,.78));pointer-events:none}
@@ -243,6 +243,7 @@
   @media(max-width:900px){
     .services,.reviews{grid-template-columns:1fr 1fr}
     .gallery{grid-template-columns:repeat(2,1fr)}
+    .vids{grid-template-columns:repeat(2,1fr)}
     .stats .wrap{grid-template-columns:1fr 1fr;gap:40px 20px}
     .visit .wrap{grid-template-columns:1fr;gap:40px}
     .nav-links{display:none}
@@ -396,6 +397,11 @@
       <figure class="vtile reveal">
         <video src="work3.mp4" poster="work3-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
         <span class="tag">Cover-Up</span>
+        <button class="vmute" type="button" aria-label="Toggle sound"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></button>
+      </figure>
+      <figure class="vtile reveal">
+        <video src="work4.mp4" poster="work4-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+        <span class="tag">Custom</span>
         <button class="vmute" type="button" aria-label="Toggle sound"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></button>
       </figure>
     </div>
