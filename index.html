@@ -197,6 +197,26 @@
   .vtile.active .vmute{background:var(--accent);color:#180605}
   .vtile.active .vmute .on{display:block}
   .vtile.active .vmute .off{display:none}
+  /* Ink game */
+  .ink-stage{max-width:560px;margin:0 auto}
+  .ink-wrap{position:relative;border:1px solid var(--line);border-radius:12px;background:radial-gradient(135% 120% at 50% 5%,#dccfb9 0%,#cabca2 55%,#b8a992 100%);overflow:hidden;box-shadow:var(--shadow),inset 0 0 60px rgba(120,100,70,.25);touch-action:none}
+  .ink-canvas{display:block;width:100%;height:auto;cursor:crosshair}
+  .ink-gun{position:absolute;top:0;left:0;width:104px;height:104px;pointer-events:none;opacity:0;transform:translate(-29%,-77%);transition:opacity .18s ease;z-index:3;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+  .ink-gun.on{opacity:1}
+  .ink-gun.buzz{animation:gunbuzz .07s linear infinite}
+  @keyframes gunbuzz{0%{margin:0 0}25%{margin:-1px 0 0 1px}50%{margin:1px 0 0 -1px}75%{margin:-1px 0 0 -1px}100%{margin:1px 0 0 1px}}
+  .ink-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.18em;font-size:.66rem;color:#5f5647;background:rgba(255,255,255,.42);padding:5px 12px;border-radius:40px;backdrop-filter:blur(2px);transition:opacity .3s ease}
+  .ink-wrap.started .ink-hint{opacity:0}
+  .ink-bar{display:flex;align-items:center;gap:16px;margin-top:20px}
+  .ink-meter{flex:1;height:8px;border-radius:20px;background:#1b1b20;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+  .ink-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .2s ease}
+  .ink-stat{font-family:'Oswald';text-transform:uppercase;letter-spacing:.1em;font-size:.8rem;color:var(--muted);white-space:nowrap}
+  .ink-stat b{color:var(--accent-2);font-size:1rem}
+  .ink-reset{font-family:'Oswald';text-transform:uppercase;letter-spacing:.1em;font-size:.74rem;color:var(--ink);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:3px;padding:9px 14px;cursor:pointer;transition:.2s;white-space:nowrap}
+  .ink-reset:hover{border-color:var(--accent);color:var(--accent-2)}
+  .ink-done{margin:18px 0 0;text-align:center;color:var(--muted);font-size:.98rem;max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .4s ease,margin .4s ease}
+  .ink-done a{color:var(--accent-2);text-decoration:underline;white-space:nowrap}
+  .ink-stage.done .ink-done{max-height:80px;opacity:1;margin-top:18px}
   /* Reviews */
   .reviews{grid-template-columns:repeat(3,1fr)}
   .quote{background:linear-gradient(180deg,var(--panel),#0f0f12);border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:34px 30px}
@@ -429,6 +449,41 @@
   </div>
 </section>
 
+<!-- INK GAME -->
+<section class="sec ink-game" id="tryit">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">Try It Yourself</p>
+      <h2>Wanna Tattoo Yourself? <span class="accent">It's Hard.</span></h2>
+      <p>Drag your finger (or mouse) along the stencil to ink the line. Steady hand — real tattoos don't come with an undo button.</p>
+    </div>
+    <div class="ink-stage reveal">
+      <div class="ink-wrap">
+        <canvas class="ink-canvas" aria-label="Tattoo the Spartan helmet stencil"></canvas>
+        <div class="ink-gun" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none">
+            <g transform="rotate(38 60 60)">
+              <rect x="44" y="8" width="32" height="40" rx="7" fill="#1c1c22" stroke="#3a3a44" stroke-width="2"/>
+              <rect x="50" y="14" width="20" height="12" rx="3" fill="#e2483d"/>
+              <circle cx="60" cy="36" r="6" fill="#3a3a44"/>
+              <rect x="54" y="46" width="12" height="20" rx="4" fill="#26262e" stroke="#3a3a44" stroke-width="2"/>
+              <rect x="58" y="64" width="4" height="34" rx="2" fill="#c9ccd4"/>
+              <rect x="59" y="94" width="2" height="14" fill="#eef0f4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="ink-hint">Press &amp; drag to ink</div>
+      </div>
+      <div class="ink-bar">
+        <div class="ink-meter"><span class="ink-fill"></span></div>
+        <div class="ink-stat"><b class="ink-pct">0%</b> inked</div>
+        <button class="ink-reset" type="button">↺ Start over</button>
+      </div>
+      <p class="ink-done">Not bad… but maybe leave the Spartan to <span class="accent">Graham</span>. <a href="[[BOOKING_URL]]" target="_blank" rel="noopener">Book the real thing →</a></p>
+    </div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
 <section class="sec" id="reviews" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
@@ -635,6 +690,77 @@
         v.muted=false; v.play().catch(()=>{});
       }
     });
+  }
+
+  // Ink game: trace the Spartan helmet stencil, blue line -> black ink, gun follows
+  const ig=document.querySelector('.ink-game');
+  if(ig && document.createElement('canvas').getContext){
+    const wrap=ig.querySelector('.ink-wrap'), canvas=ig.querySelector('.ink-canvas'),
+          gun=ig.querySelector('.ink-gun'), fillEl=ig.querySelector('.ink-fill'),
+          pctEl=ig.querySelector('.ink-pct'), stage=ig.querySelector('.ink-stage'),
+          resetBtn=ig.querySelector('.ink-reset');
+    const W=360,H=440,BR=19,MIR=new DOMMatrix([-1,0,0,1,W,0]);
+    // centered symmetric strokes (drawn once)
+    const fullD=[
+      "M180 172 C 170 172 166 196 168 232 C 169 262 173 286 180 300 C 187 286 191 262 192 232 C 194 196 190 172 180 172 Z",
+      "M112 190 C 140 176 152 182 180 178 C 208 182 220 176 248 190",
+      "M146 78 C 150 40 162 18 180 12 C 198 18 210 40 214 78",
+      "M150 76 C 165 66 195 66 210 76",
+      "M164 72 L 176 24","M180 70 L 180 16","M196 72 L 184 24"
+    ];
+    // left-side strokes (drawn + mirrored)
+    const mirD=[
+      "M180 66 C 128 62 84 96 74 150 C 66 192 70 236 88 280 C 102 314 118 342 132 380 C 150 356 152 330 150 300 C 149 280 150 268 164 260",
+      "M96 208 C 112 194 146 194 158 210 C 146 222 112 222 96 208 Z"
+    ];
+    const fullP=fullD.map(d=>new Path2D(d));
+    const mirP=mirD.map(d=>{const p=new Path2D(d);const m=new Path2D();m.addPath(p,MIR);return[p,m];});
+    // sample points for progress
+    const NS='http://www.w3.org/2000/svg';
+    function sample(d,mir){
+      const svg=document.createElementNS(NS,'svg');svg.setAttribute('width','0');svg.setAttribute('height','0');svg.style.position='absolute';
+      const el=document.createElementNS(NS,'path');el.setAttribute('d',d);svg.appendChild(el);document.body.appendChild(svg);
+      const len=el.getTotalLength(),pts=[];
+      for(let l=0;l<=len;l+=5){const p=el.getPointAtLength(l);pts.push(mir?{x:W-p.x,y:p.y}:{x:p.x,y:p.y});}
+      document.body.removeChild(svg);return pts;
+    }
+    const samples=[];
+    fullD.forEach(d=>samples.push(...sample(d,false)));
+    mirD.forEach(d=>{samples.push(...sample(d,false));samples.push(...sample(d,true));});
+    const total=samples.length;
+    const ctx=canvas.getContext('2d');
+    const ink=document.createElement('canvas'), ictx=ink.getContext('2d');
+    let inked,count,dpr,t,drawing=false,lx=0,ly=0,done;
+    function paintHelmet(c,color,w){c.lineWidth=w;c.strokeStyle=color;c.lineCap='round';c.lineJoin='round';fullP.forEach(p=>c.stroke(p));mirP.forEach(o=>{c.stroke(o[0]);c.stroke(o[1]);});}
+    function drawStencil(){ctx.clearRect(0,0,W,H);paintHelmet(ctx,'#3f57c9',3);}
+    function setup(){
+      const cw=Math.max(240,Math.min(wrap.clientWidth||W,560));
+      dpr=Math.min(window.devicePixelRatio||1,2);const scale=cw/W;t=dpr*scale;
+      canvas.width=Math.round(cw*dpr);canvas.height=Math.round(cw*(H/W)*dpr);
+      ink.width=canvas.width;ink.height=canvas.height;
+      ctx.setTransform(t,0,0,t,0,0);ictx.setTransform(t,0,0,t,0,0);
+      ictx.clearRect(0,0,W,H);paintHelmet(ictx,'#141414',7.5);
+      drawStencil();inked=new Uint8Array(total);count=0;done=false;
+      stage.classList.remove('done');wrap.classList.remove('started');updateMeter();
+    }
+    function updateMeter(){const pct=Math.min(100,Math.round(count/total*100));fillEl.style.width=pct+'%';pctEl.textContent=pct+'%';
+      if(pct>=90&&!done){done=true;stage.classList.add('done');}}
+    function reveal(x,y){ctx.save();ctx.beginPath();ctx.arc(x,y,BR,0,Math.PI*2);ctx.clip();ctx.drawImage(ink,0,0,W,H);ctx.restore();
+      for(let i=0;i<total;i++){if(inked[i])continue;const dx=samples[i].x-x,dy=samples[i].y-y;if(dx*dx+dy*dy<=BR*BR){inked[i]=1;count++;}}}
+    function toLocal(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*(W/r.width),y:(e.clientY-r.top)*(W/r.width)};}
+    function moveGun(e){const r=wrap.getBoundingClientRect();gun.style.left=(e.clientX-r.left)+'px';gun.style.top=(e.clientY-r.top)+'px';}
+    wrap.addEventListener('pointerdown',e=>{e.preventDefault();drawing=true;wrap.setPointerCapture&&wrap.setPointerCapture(e.pointerId);
+      wrap.classList.add('started');gun.classList.add('on','buzz');moveGun(e);const p=toLocal(e);lx=p.x;ly=p.y;reveal(lx,ly);updateMeter();});
+    wrap.addEventListener('pointermove',e=>{moveGun(e);gun.classList.add('on');if(!drawing)return;e.preventDefault();
+      const p=toLocal(e),dx=p.x-lx,dy=p.y-ly,dist=Math.hypot(dx,dy),steps=Math.max(1,Math.ceil(dist/(BR*0.5)));
+      for(let k=1;k<=steps;k++){reveal(lx+dx*k/steps,ly+dy*k/steps);}lx=p.x;ly=p.y;updateMeter();});
+    function stop(){drawing=false;gun.classList.remove('buzz');}
+    wrap.addEventListener('pointerup',stop);
+    wrap.addEventListener('pointercancel',stop);
+    wrap.addEventListener('pointerleave',()=>{if(!drawing)gun.classList.remove('on');});
+    resetBtn.addEventListener('click',setup);
+    let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(setup,200);});
+    setup();
   }
 </script>
 </body>
