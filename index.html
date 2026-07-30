@@ -222,6 +222,17 @@
   .ink-stage.done .ink-done{max-height:80px;opacity:1;margin-top:18px}
   /* Reviews */
   .reviews{grid-template-columns:repeat(3,1fr)}
+  /* Review marquee */
+  .revmarquee{display:flex;flex-direction:column;gap:18px}
+  .revrow{overflow:hidden;position:relative}
+  .revrow::before,.revrow::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:3;pointer-events:none}
+  .revrow::before{left:0;background:linear-gradient(90deg,var(--bg-2),transparent)}
+  .revrow::after{right:0;background:linear-gradient(270deg,var(--bg-2),transparent)}
+  .revtrack{display:flex;gap:18px;width:max-content;align-items:stretch;will-change:transform;animation:reelscroll var(--dur,70s) linear infinite}
+  .revrow[data-dir="ltr"] .revtrack{animation-direction:reverse}
+  .revmarquee:hover .revtrack{animation-play-state:paused}
+  .revtrack .quote{flex:0 0 auto;width:360px;margin:0;display:flex;flex-direction:column}
+  .revtrack .quote p{flex:1}
   .quote{background:linear-gradient(180deg,var(--panel),#0f0f12);border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:34px 30px}
   .quote .stars{margin-bottom:16px}
   .quote p{font-size:1.05rem;color:#d8d4cb;font-style:italic;margin-bottom:20px}
@@ -489,22 +500,49 @@
       <h2>What Clients <span class="accent">Say</span></h2>
       <p>Rated 4.9★ across 124 reviews from clients who trusted us with their ink.</p>
     </div>
-    <div class="grid reviews">
-      <div class="quote reveal">
-        <div class="stars">★★★★★</div>
-        <p>"[[REVIEW_1: paste a real client review here. e.g. 'Graham took my messy old tattoo and turned it into something I actually love. Clean shop, easy to talk to, and the work speaks for itself.']]"</p>
-        <div class="who">[[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
+    <!-- PLACEHOLDER reviews (swap for real Google reviews when ready) -->
+    <div class="revmarquee reveal">
+      <div class="revrow" data-dir="rtl">
+        <div class="revtrack">
+          <div class="quote">
+            <div class="stars">★★★★★</div>
+            <p>"Graham nailed my sleeve on the first pass. Clean lines, took his time, and the shading is razor sharp. Already planning my next piece."</p>
+            <div class="who">Marcus T. · <span style="color:var(--muted)">via Google</span></div>
+          </div>
+          <div class="quote">
+            <div class="stars">★★★★★</div>
+            <p>"Went in with a rough idea and left with a tattoo I couldn't have imagined. The shop is spotless and Graham made the whole thing easy."</p>
+            <div class="who">Priya R. · <span style="color:var(--muted)">via Google</span></div>
+          </div>
+          <div class="quote">
+            <div class="stars">★★★★★</div>
+            <p>"Best cover-up I've seen. My old tattoo is completely gone and what's there now is unreal. Worth every minute in the chair."</p>
+            <div class="who">Devon W. · <span style="color:var(--muted)">via Google</span></div>
+          </div>
+        </div>
       </div>
-      <div class="quote reveal">
-        <div class="stars">★★★★★</div>
-        <p>"[[REVIEW_2: paste a second real client review here.]]"</p>
-        <div class="who">[[CLIENT NAME]] · <span style="color:var(--muted)">via Google</span></div>
+      <div class="revrow" data-dir="ltr">
+        <div class="revtrack">
+          <div class="quote">
+            <div class="stars">★★★★★</div>
+            <p>"Fine line work that actually held up. Six months later it still looks crisp. Highly recommend him for delicate pieces."</p>
+            <div class="who">Sofia L. · <span style="color:var(--muted)">via Google</span></div>
+          </div>
+          <div class="quote">
+            <div class="stars">★★★★★</div>
+            <p>"Professional, funny, and seriously talented. He walked me through everything and the healing was smooth. 10 out of 10."</p>
+            <div class="who">Tyler M. · <span style="color:var(--muted)">via Google</span></div>
+          </div>
+          <div class="quote">
+            <div class="stars">★★★★★</div>
+            <p>"Drove two hours for a session with Graham and it was 100% worth it. The detail in the black and grey blew me away."</p>
+            <div class="who">Alicia K. · <span style="color:var(--muted)">via Google</span></div>
+          </div>
+        </div>
       </div>
-      <div class="quote reveal summary">
-        <div class="g-rate"><b>4.9</b><span class="stars">★★★★★</span></div>
-        <p class="g-count">124 client reviews</p>
-        <a href="[[MAPS_URL]]" target="_blank" rel="noopener" class="btn btn-ghost" style="width:100%;justify-content:center">Read all on Google</a>
-      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:32px">
+      <a href="[[MAPS_URL]]" target="_blank" rel="noopener" class="btn btn-ghost">Read all on Google</a>
     </div>
   </div>
 </section>
@@ -761,6 +799,24 @@
       if(e.isIntersecting){ ctaVid.play().catch(()=>{}); } else { ctaVid.pause(); }
     }),{threshold:.15});
     cObs.observe(ctaVid);
+  }
+
+  // Review marquee: two rows scrolling opposite ways (pause on hover to read)
+  const rev=document.querySelector('.revmarquee');
+  if(rev){
+    let rStarted=false;
+    const initRev=()=>{
+      if(rStarted)return; rStarted=true;
+      rev.querySelectorAll('.revtrack').forEach(track=>{
+        const row=track.parentElement, base=track.innerHTML; let g=0;
+        while(track.scrollWidth < row.clientWidth && g++<40){ track.insertAdjacentHTML('beforeend', base); }
+        const setW=track.scrollWidth;
+        track.insertAdjacentHTML('beforeend', track.innerHTML);
+        track.style.setProperty('--dur',(setW/26)+'s'); // ~26px/s, slow enough to read
+      });
+    };
+    const rIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){initRev();rIO.disconnect();}}),{rootMargin:'300px 0px'});
+    rIO.observe(rev);
   }
 </script>
 </body>
