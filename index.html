@@ -175,6 +175,18 @@
   .tile:hover img{transform:scale(1.07);filter:grayscale(0) contrast(1.02) brightness(.95)}
   .tile:hover::after{opacity:.55}
   .tile .tag{position:absolute;bottom:12px;left:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;color:var(--ink);background:rgba(0,0,0,.55);padding:4px 10px;border-radius:2px;backdrop-filter:blur(2px)}
+  /* Video work row */
+  .vids{grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+  .vtile{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:#111114;margin:0}
+  .vtile video{width:100%;height:100%;object-fit:cover;display:block}
+  .vtile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,11,0) 55%,rgba(10,10,11,.78));pointer-events:none}
+  .vtile .tag{position:absolute;bottom:14px;left:14px;z-index:2;font-family:'Oswald';text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;color:var(--ink);background:rgba(0,0,0,.5);padding:4px 10px;border-radius:2px;backdrop-filter:blur(2px)}
+  .vmute{position:absolute;top:12px;right:12px;z-index:3;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;cursor:pointer;color:var(--ink);background:rgba(0,0,0,.5);backdrop-filter:blur(2px);transition:background .2s,color .2s}
+  .vmute:hover{background:var(--accent);color:#180605}
+  .vmute svg{width:17px;height:17px;pointer-events:none}
+  .vmute .on{display:none}
+  .vtile.unmuted .vmute .on{display:block}
+  .vtile.unmuted .vmute .off{display:none}
   /* Reviews */
   .reviews{grid-template-columns:repeat(3,1fr)}
   .quote{background:linear-gradient(180deg,var(--panel),#0f0f12);border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:34px 30px}
@@ -255,6 +267,8 @@
     .foot-top{flex-direction:column;gap:28px}
     .sec-head{margin-bottom:40px}
     .scroll-hint{display:none}
+    .vids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:12px;padding-bottom:6px}
+    .vtile{flex:0 0 74%;scroll-snap-align:center}
     .marquee-track{font-size:1.25rem;gap:40px}
     .marquee-track span{gap:40px}
     .stat b{font-size:2.7rem}
@@ -366,7 +380,24 @@
     <div class="sec-head center reveal">
       <p class="eyebrow">The Portfolio</p>
       <h2>Recent <span class="accent">Work</span></h2>
-      <p>Just a glimpse — the full, always-growing portfolio lives on Instagram, updated with fresh work all the time. Follow along at <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" style="color:var(--accent-2);text-decoration:underline">@grahamskee.tattoos</a>.</p>
+      <p>A few pieces in motion — tap the speaker to hear the room. The full, always-growing portfolio lives on Instagram at <a href="https://www.instagram.com/grahamskee.tattoos" target="_blank" rel="noopener" style="color:var(--accent-2);text-decoration:underline">@grahamskee.tattoos</a>.</p>
+    </div>
+    <div class="grid vids">
+      <figure class="vtile reveal">
+        <video src="work1.mp4" poster="work1-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+        <span class="tag">Custom</span>
+        <button class="vmute" type="button" aria-label="Toggle sound"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></button>
+      </figure>
+      <figure class="vtile reveal">
+        <video src="work2.mp4" poster="work2-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+        <span class="tag">Fine Line</span>
+        <button class="vmute" type="button" aria-label="Toggle sound"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></button>
+      </figure>
+      <figure class="vtile reveal">
+        <video src="work3.mp4" poster="work3-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+        <span class="tag">Cover-Up</span>
+        <button class="vmute" type="button" aria-label="Toggle sound"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></button>
+      </figure>
     </div>
     <div class="grid gallery">
       <div class="tile reveal"><img src="https://picsum.photos/seed/grahamskee-2/600/600?grayscale" alt="Tattoo work sample — custom" loading="lazy"><span class="tag">Custom</span></div>
@@ -561,6 +592,24 @@
   const PH="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'><rect width='600' height='600' fill='#141417'/><g stroke='#e2483d' stroke-width='9' fill='none' opacity='.5' stroke-linejoin='round' stroke-linecap='round'><rect x='168' y='196' width='264' height='188' rx='14'/><circle cx='246' cy='256' r='22'/><path d='M180 362 L276 286 L338 336 L398 290 L420 374'/></g><text x='300' y='448' text-anchor='middle' fill='#8a8781' font-family='Arial,sans-serif' font-size='27' letter-spacing='5'>SAMPLE PHOTO</text></svg>");
   document.querySelectorAll('.tile img').forEach(img=>{
     img.addEventListener('error',()=>{ if(!img.dataset.ph){ img.dataset.ph='1'; img.src=PH; } });
+  });
+  // Work videos: play only while in view (saves bandwidth), tap speaker to hear
+  const vtiles=[...document.querySelectorAll('.vtile')];
+  const vidObs=new IntersectionObserver((es)=>es.forEach(e=>{
+    const v=e.target.querySelector('video');
+    if(e.isIntersecting){ v.play().catch(()=>{}); } else { v.pause(); }
+  }),{threshold:.4});
+  vtiles.forEach(t=>vidObs.observe(t));
+  vtiles.forEach(tile=>{
+    const v=tile.querySelector('video');
+    tile.querySelector('.vmute').addEventListener('click',()=>{
+      const turningOn=v.muted;
+      // solo audio: mute everyone else
+      vtiles.forEach(o=>{ if(o!==tile){ o.querySelector('video').muted=true; o.classList.remove('unmuted'); } });
+      v.muted=!turningOn;
+      tile.classList.toggle('unmuted',turningOn);
+      if(turningOn) v.play().catch(()=>{});
+    });
   });
 </script>
 </body>
