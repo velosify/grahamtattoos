@@ -1,10 +1,10 @@
 # Cloudflare Pages headers — https://developers.cloudflare.com/pages/configuration/headers/
 
-# Long-cache the static media (they rarely change)
-/hero.mp4
-  Cache-Control: public, max-age=31536000, immutable
-/poster.jpg
-  Cache-Control: public, max-age=31536000, immutable
+# Cache the static media (kept short-ish while we're still iterating on files)
+/*.mp4
+  Cache-Control: public, max-age=86400
+/*.jpg
+  Cache-Control: public, max-age=86400
 
 # Sensible security headers for the whole site
 /*

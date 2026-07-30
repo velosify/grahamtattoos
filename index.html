@@ -675,11 +675,13 @@
       track.style.setProperty('--dur', (setWidth/SPEED)+'s');
     });
     const vids=()=>marquee.querySelectorAll('video');
-    // play only while the marquee is on screen
-    const secObs=new IntersectionObserver((es)=>es.forEach(e=>{
-      vids().forEach(v=>{ if(e.isIntersecting){ if(v.muted) v.play().catch(()=>{}); } else { v.pause(); } });
-    }),{threshold:.12});
-    secObs.observe(marquee);
+    // play only the reels currently in view (keeps ~6 decoding at once, not all ~16)
+    const tileObs=new IntersectionObserver((es)=>es.forEach(e=>{
+      const v=e.target.querySelector('video'); if(!v) return;
+      if(e.isIntersecting){ if(v.muted) v.play().catch(()=>{}); }
+      else if(v.muted){ v.pause(); }
+    }),{rootMargin:'60px',threshold:0.01});
+    marquee.querySelectorAll('.vtile').forEach(t=>tileObs.observe(t));
     // click a reel: stop the scroll and play its audio (click again or another to change)
     marquee.addEventListener('click',(e)=>{
       const tile=e.target.closest('.vtile'); if(!tile) return;
