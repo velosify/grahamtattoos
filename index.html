@@ -699,40 +699,52 @@
           gun=ig.querySelector('.ink-gun'), fillEl=ig.querySelector('.ink-fill'),
           pctEl=ig.querySelector('.ink-pct'), stage=ig.querySelector('.ink-stage'),
           resetBtn=ig.querySelector('.ink-reset');
-    const W=360,H=440,BR=19,MIR=new DOMMatrix([-1,0,0,1,W,0]);
-    // centered symmetric strokes (drawn once)
-    const fullD=[
-      "M180 172 C 170 172 166 196 168 232 C 169 262 173 286 180 300 C 187 286 191 262 192 232 C 194 196 190 172 180 172 Z",
-      "M112 190 C 140 176 152 182 180 178 C 208 182 220 176 248 190",
-      "M146 78 C 150 40 162 18 180 12 C 198 18 210 40 214 78",
-      "M150 76 C 165 66 195 66 210 76",
-      "M164 72 L 176 24","M180 70 L 180 16","M196 72 L 184 24"
-    ];
-    // left-side strokes (drawn + mirrored)
-    const mirD=[
-      "M180 66 C 128 62 84 96 74 150 C 66 192 70 236 88 280 C 102 314 118 342 132 380 C 150 356 152 330 150 300 C 149 280 150 268 164 260",
-      "M96 208 C 112 194 146 194 158 210 C 146 222 112 222 96 208 Z"
-    ];
-    const fullP=fullD.map(d=>new Path2D(d));
-    const mirP=mirD.map(d=>{const p=new Path2D(d);const m=new Path2D();m.addPath(p,MIR);return[p,m];});
+    const W=460,H=520;
+    const bez=(a,b,c,d,t)=>{const u=1-t;return{x:u*u*u*a.x+3*u*u*t*b.x+3*u*t*t*c.x+t*t*t*d.x,y:u*u*u*a.y+3*u*u*t*b.y+3*u*t*t*c.y+t*t*t*d.y};};
+    const lerp=(a,b,t)=>({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});
+    const P=o=>o.x.toFixed(1)+' '+o.y.toFixed(1);
+    // Original 3/4 Corinthian helmet (facing right), crest generated as horsehair strands
+    const D=(function(){
+      const B=[
+        "M150 208 C 196 138 316 130 380 196",                         // dome / skull top
+        "M380 196 C 402 230 404 270 390 302",                          // front forehead edge
+        "M294 278 C 330 262 364 264 390 284",                          // brow ridge
+        "M300 302 C 328 289 356 291 378 306 C 358 320 324 320 300 302 Z", // eye slot (angled)
+        "M360 284 C 360 322 358 358 366 396 C 380 382 382 324 380 290",   // nose guard
+        "M294 278 C 289 340 306 418 356 474",                          // cheek guard front
+        "M356 474 C 300 494 240 480 206 452",                          // chin / jaw underside
+        "M206 452 C 166 428 148 374 156 324",                          // neck guard back edge
+        "M156 324 C 116 302 108 248 140 206",                          // back of helmet
+        "M332 316 C 336 360 342 414 360 466",                          // cheek line under eye
+        "M300 302 C 336 302 360 304 372 308",                          // eye-to-nose bridge
+        "M150 330 C 128 328 120 348 136 360 C 150 368 164 356 156 342", // ear-guard curl
+        "M198 176 C 240 158 312 158 346 178 L 336 200 C 306 184 244 184 210 198 Z" // crest bracket
+      ];
+      const P0={x:346,y:82},P1={x:150,y:0},P2={x:-6,y:150},P3={x:104,y:322}; // crest outer sweep
+      const bf={x:332,y:180}, bb={x:214,y:196};                              // crest base front/back
+      let edge="M"+P(P0); for(let i=1;i<=26;i++) edge+=" L"+P(bez(P0,P1,P2,P3,i/26)); B.push(edge);
+      const N=24; for(let i=0;i<=N;i++){const t=i/N,b=lerp(bf,bb,t),o=bez(P0,P1,P2,P3,t),
+        c={x:b.x*0.32+o.x*0.68-10,y:b.y*0.32+o.y*0.68-16}; B.push("M"+P(b)+" Q"+P(c)+" "+P(o));}
+      return B;
+    })();
+    const paths=D.map(d=>new Path2D(d));
     // sample points for progress
     const NS='http://www.w3.org/2000/svg';
-    function sample(d,mir){
+    function sample(d){
       const svg=document.createElementNS(NS,'svg');svg.setAttribute('width','0');svg.setAttribute('height','0');svg.style.position='absolute';
       const el=document.createElementNS(NS,'path');el.setAttribute('d',d);svg.appendChild(el);document.body.appendChild(svg);
       const len=el.getTotalLength(),pts=[];
-      for(let l=0;l<=len;l+=5){const p=el.getPointAtLength(l);pts.push(mir?{x:W-p.x,y:p.y}:{x:p.x,y:p.y});}
+      for(let l=0;l<=len;l+=6){const p=el.getPointAtLength(l);pts.push({x:p.x,y:p.y});}
       document.body.removeChild(svg);return pts;
     }
     const samples=[];
-    fullD.forEach(d=>samples.push(...sample(d,false)));
-    mirD.forEach(d=>{samples.push(...sample(d,false));samples.push(...sample(d,true));});
+    D.forEach(d=>samples.push(...sample(d)));
     const total=samples.length;
     const ctx=canvas.getContext('2d');
     let inked,count,dpr,t,drawing=false,lx=0,ly=0,done;
     const INK='#141414',INKW=7,PR=14; // ink color, brush width, progress tolerance
-    function paintHelmet(c,color,w){c.lineWidth=w;c.strokeStyle=color;c.lineCap='round';c.lineJoin='round';fullP.forEach(p=>c.stroke(p));mirP.forEach(o=>{c.stroke(o[0]);c.stroke(o[1]);});}
-    function drawStencil(){ctx.clearRect(0,0,W,H);paintHelmet(ctx,'#3f57c9',3);}
+    function paintHelmet(c,color,w){c.lineWidth=w;c.strokeStyle=color;c.lineCap='round';c.lineJoin='round';paths.forEach(p=>c.stroke(p));}
+    function drawStencil(){ctx.clearRect(0,0,W,H);paintHelmet(ctx,'#3f57c9',2.6);}
     function setup(){
       const cw=Math.max(240,Math.min(wrap.clientWidth||W,560));
       dpr=Math.min(window.devicePixelRatio||1,2);const scale=cw/W;t=dpr*scale;
