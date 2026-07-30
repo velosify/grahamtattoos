@@ -331,7 +331,7 @@
 </header>
 
 <section class="hero" id="top">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="poster.jpg">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="poster.jpg">
     <source src="hero.mp4" type="video/mp4">
   </video>
   <div class="hero-bg"></div>
@@ -411,22 +411,22 @@
       <div class="reelrow" data-dir="rtl">
         <div class="reeltrack">
           <figure class="vtile">
-            <video src="work1.mp4" poster="work1-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+            <video src="work1.mp4" poster="work1-poster.jpg" muted loop playsinline preload="none" aria-label="Tattoo work video"></video>
             <span class="tag">Custom</span>
             <span class="vmute"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></span>
           </figure>
           <figure class="vtile">
-            <video src="work2.mp4" poster="work2-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+            <video src="work2.mp4" poster="work2-poster.jpg" muted loop playsinline preload="none" aria-label="Tattoo work video"></video>
             <span class="tag">Fine Line</span>
             <span class="vmute"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></span>
           </figure>
           <figure class="vtile">
-            <video src="work3.mp4" poster="work3-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+            <video src="work3.mp4" poster="work3-poster.jpg" muted loop playsinline preload="none" aria-label="Tattoo work video"></video>
             <span class="tag">Cover-Up</span>
             <span class="vmute"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></span>
           </figure>
           <figure class="vtile">
-            <video src="work4.mp4" poster="work4-poster.jpg" muted loop playsinline preload="metadata" aria-label="Tattoo work video"></video>
+            <video src="work4.mp4" poster="work4-poster.jpg" muted loop playsinline preload="none" aria-label="Tattoo work video"></video>
             <span class="tag">Custom</span>
             <span class="vmute"><svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg></span>
           </figure>
@@ -540,7 +540,7 @@
 
 <!-- CTA -->
 <section class="cta" id="book">
-  <video class="cta-video" autoplay muted loop playsinline preload="metadata" poster="poster.jpg">
+  <video class="cta-video" muted loop playsinline preload="none" poster="poster.jpg">
     <source src="hero.mp4" type="video/mp4">
   </video>
   <div class="cta-bg"></div>
@@ -651,6 +651,9 @@
   // Reel marquee: seamless auto-scroll, play-in-view, click a reel to stop + hear it
   const marquee=document.querySelector('.reelmarquee');
   if(marquee){
+   let mStarted=false;
+   const initMarquee=()=>{
+    if(mStarted)return; mStarted=true;
     const SPEED=42; // px per second
     marquee.querySelectorAll('.reeltrack').forEach(track=>{
       const row=track.parentElement;
@@ -684,11 +687,17 @@
         v.muted=false; v.play().catch(()=>{});
       }
     });
+   };
+   const mIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){initMarquee();mIO.disconnect();}}),{rootMargin:'400px 0px'});
+   mIO.observe(marquee);
   }
 
   // Ink game: trace the Spartan helmet stencil, blue line -> black ink, gun follows
   const ig=document.querySelector('.ink-game');
   if(ig && document.createElement('canvas').getContext){
+   let gStarted=false;
+   const initGame=()=>{
+    if(gStarted)return; gStarted=true;
     const wrap=ig.querySelector('.ink-wrap'), canvas=ig.querySelector('.ink-canvas'),
           gun=ig.querySelector('.ink-gun'), fillEl=ig.querySelector('.ink-fill'),
           pctEl=ig.querySelector('.ink-pct'), stage=ig.querySelector('.ink-stage'),
@@ -741,6 +750,18 @@
     resetBtn.addEventListener('click',setup);
     let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(setup,200);});
     setup();
+   };
+   const gIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){initGame();gIO.disconnect();}}),{rootMargin:'400px 0px'});
+   gIO.observe(ig);
+  }
+
+  // CTA background video: load & play only when scrolled into view
+  const ctaVid=document.querySelector('.cta-video');
+  if(ctaVid){
+    const cObs=new IntersectionObserver(es=>es.forEach(e=>{
+      if(e.isIntersecting){ ctaVid.play().catch(()=>{}); } else { ctaVid.pause(); }
+    }),{threshold:.15});
+    cObs.observe(ctaVid);
   }
 </script>
 </body>
